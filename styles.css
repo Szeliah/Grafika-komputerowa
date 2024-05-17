@@ -1,0 +1,10 @@
+.btn-class_click {
+    font-size: 30px;
+    color: black;
+    background-color: #4d80cc;
+    padding: 10px;
+
+    margin: auto;
+    max-width: 70px;
+    border-radius: 15px;
+}
