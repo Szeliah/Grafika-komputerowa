@@ -161,15 +161,15 @@ const Cube = function () {
         0.5, 1.0, 0.0,
     ]
     
-    let results = generateBox(0, 0, 0, 1);
+    let wyniki = generateBox_2(0, 0, 0, 1);
 
     const boxVertBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, boxVertBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(results[0]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(wyniki[0]), gl.STATIC_DRAW);
     
     const boxIndicesBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, boxIndicesBuffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(results[1]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(wyniki[1]), gl.STATIC_DRAW);
     
     const posAttribLocation = gl.getAttribLocation(program, 'vertPosition');
     gl.vertexAttribPointer(
@@ -235,7 +235,7 @@ const Cube = function () {
     
 } 
 
-function generateBox(x, y, z, size)    // x, y, z dotyczy srodka szescianu 
+function generateBox_2(x, y, z, size)    // x, y, z dotyczy srodka szescianu 
 {
 
     let boxVertices = 
