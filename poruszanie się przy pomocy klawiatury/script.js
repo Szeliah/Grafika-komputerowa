@@ -58,6 +58,37 @@ const Triangle = function (meshes) {
     let canvasColor = [0.2, 0.5, 0.8]
 
 
+function keyAction(viewMatrix) 
+{
+	window.addEventListener(
+	    "keydown",
+	    (event) => {
+	    if (event.defaultPrevented) {
+		return; // Do nothing if event already handled
+	    }
+	    switch (event.code) {
+		case "ArrowDown":
+		    mat4.translate(viewMatrix, viewMatrix, [0, -0.1, 0]);
+		    break;
+		case "ArrowUp":
+		    mat4.translate(viewMatrix, viewMatrix, [0, 0.1, 0]);
+		    break;
+		case "ArrowLeft":
+		    mat4.translate(viewMatrix, viewMatrix, [-0.1, 0, 0]);
+		    break;
+		case "ArrowRight":
+		    mat4.translate(viewMatrix, viewMatrix, [0.1, 0, 0]);
+		    break;
+	    }
+	
+	    },
+	    true,
+	);
+}
+
+
+
+	
 
 
     checkGl(gl);
@@ -193,10 +224,14 @@ const Triangle = function (meshes) {
     let translationMatrix = new Float32Array(16);
     let angle = 0;
 
+    keyAction(viewMatrix);
     const loop = function () {
         
         angle = performance.now() / 1000 / 60 * 23 * Math.PI;
         mat4.rotate(worldMatrix, identityMat, angle, [0,1,0]);
+
+	mat4.multiply(worldMatrix, viewMatrix, worldMatrix);
+	    
         gl.uniformMatrix4fv(worldMatLoc, gl.FALSE, worldMatrix);
         
         gl.clearColor(...canvasColor, 1.0);   // R, G, B,  A 
